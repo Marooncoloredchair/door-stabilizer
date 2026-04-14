@@ -6,8 +6,6 @@
 
 **In one sentence:** give your simulator or toy plant an **`action → reward`** interface, then run an **online** loop that adapts actions when the dynamics drift — without designing a full policy by hand.
 
-**Not:** a magic “auto-fix” for every real-world PID loop. You still **wrap your system** (sim or code) as `step(action) → reward` and choose the reward. See [Limitations](#limitations).
-
 **Door** is a small **online adaptive control** library for Python: **`Door.act()`** and **`Door.update(reward)`**, with an **online surrogate** (ridge by default; optional **PyTorch** MLP), candidate scoring, light refinement, and exploration widening when reward variability spikes. Batch **`door.run`** is available with optional **N(t)**-style readouts.
 
 **Install from PyPI** (import name is still `door`):
