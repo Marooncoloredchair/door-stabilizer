@@ -1,0 +1,2 @@
+# Pin for reproducible examples; relax as needed.
+door-stabilizer>=0.4.1
