@@ -4,7 +4,19 @@
 [![Python](https://img.shields.io/pypi/pyversions/door-stabilizer.svg)](https://pypi.org/project/door-stabilizer/)
 [![PyPI - License](https://img.shields.io/pypi/l/door-stabilizer)](https://pypi.org/project/door-stabilizer/)
 
-**Door** is a small **online adaptive control** library for Python. You implement a **plant** `step(action) → reward`, then loop with **`Door.act()`** and **`Door.update(reward)`**. Internally it maintains an **online surrogate** (ridge by default; optional **PyTorch** MLP), proposes and refines actions, and widens exploration when reward variability spikes. A batch API **`door.run`** is available with optional **N(t)**-style stability readouts.
+## What Door is building toward
+
+Plants and simulators produce huge streams of data, while many real loops stay on **fixed controllers**, **manual tuning**, and **slow recovery from drift**. The long-term bet is an **adaptive control layer** sold like infrastructure: wrap hardware or a digital twin behind a **minimal API**, optimize **business-defined rewards** (throughput, precision, energy, stability proxies), and ship **operations-grade observability**—not another one-off tuner.
+
+**Integration shape:** **actions in, rewards out** — a small surface area (think **Stripe-for-control** in spirit: hide the absurd complexity behind a few calls). **Generic engine** (here): online model of action→reward dynamics, exploration, and responses when variability spikes. **Flagship** stacks (hybrid policies, stronger refinement, certification-grade validation) can pair with that story where the problem demands it.
+
+**Observability:** batch **`door.run`** can surface **N(t)**-style stability readouts so the loop is governable, not opaque.
+
+**This repo** documents what **ships on PyPI** today; the category promise is **reduced operational risk and faster time-to-stable control** through productized adaptation.
+
+---
+
+**Door** is an **online adaptive control** library for Python. You implement a **plant** `step(action) → reward`, then loop with **`Door.act()`** and **`Door.update(reward)`**. Internally it maintains an **online surrogate** (ridge by default; optional **PyTorch** MLP), proposes and refines actions, and widens exploration when reward variability spikes. A batch API **`door.run`** is available with optional **N(t)**-style stability readouts.
 
 **Install from PyPI** (import name is still `door`):
 
