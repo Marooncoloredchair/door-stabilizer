@@ -1,5 +1,7 @@
 # Door (door-stabilizer)
 
+**Not physical doors.** The name is historical; this library is for **closed-loop / adaptive control** in software (`import door`). If the name confuses people you’re talking to, call it **“door-stabilizer on PyPI”** or say **“the adaptive control SDK.”**
+
 [![PyPI version](https://img.shields.io/pypi/v/door-stabilizer.svg)](https://pypi.org/project/door-stabilizer/)
 [![Python](https://img.shields.io/pypi/pyversions/door-stabilizer.svg)](https://pypi.org/project/door-stabilizer/)
 [![PyPI - License](https://img.shields.io/pypi/l/door-stabilizer)](https://pypi.org/project/door-stabilizer/)
