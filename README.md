@@ -4,7 +4,11 @@
 [![Python](https://img.shields.io/pypi/pyversions/door-stabilizer.svg)](https://pypi.org/project/door-stabilizer/)
 [![PyPI - License](https://img.shields.io/pypi/l/door-stabilizer)](https://pypi.org/project/door-stabilizer/)
 
-**Door** is a small **online adaptive control** library for Python. You implement a **plant** `step(action) → reward`, then loop with **`Door.act()`** and **`Door.update(reward)`**. Internally it maintains an **online surrogate** (ridge by default; optional **PyTorch** MLP), proposes and refines actions, and widens exploration when reward variability spikes. A batch API **`door.run`** is available with optional **N(t)**-style stability readouts.
+**In one sentence:** give your simulator or toy plant an **`action → reward`** interface, then run an **online** loop that adapts actions when the dynamics drift — without designing a full policy by hand.
+
+**Not:** a magic “auto-fix” for every real-world PID loop. You still **wrap your system** (sim or code) as `step(action) → reward` and choose the reward. See [Limitations](#limitations).
+
+**Door** is a small **online adaptive control** library for Python: **`Door.act()`** and **`Door.update(reward)`**, with an **online surrogate** (ridge by default; optional **PyTorch** MLP), candidate scoring, light refinement, and exploration widening when reward variability spikes. Batch **`door.run`** is available with optional **N(t)**-style readouts.
 
 **Install from PyPI** (import name is still `door`):
 
@@ -48,6 +52,25 @@ for _ in range(100):
 
 More examples live in [`examples/`](examples/).
 
+### 60-second demo (plot)
+
+Toy **drifting quadratic** (same plant for both curves; higher cumulative reward is better):
+
+```bash
+pip install door-stabilizer matplotlib
+python examples/plot_learning_curve.py
+```
+
+Writes `examples/door_vs_random_cumulative.png` — **Door vs random actions**, not a temperature loop.
+
+---
+
+## Limitations
+
+- **Not** a drop-in replacement for industrial PID blocks or vendor PLCs.
+- **You** define the plant and reward (tracking error, smoothness penalty, etc.); Door searches actions **online** against that signal.
+- Serious hardware needs your own safety review, rate limits, and validation — as with any learning-based controller.
+
 ---
 
 ## API sketch
@@ -74,7 +97,7 @@ python -c "import door; print(door.__version__)"
 
 ## Repository name on GitHub
 
-This GitHub project may appear as **`door-stabalizer`** (typo). The **PyPI distribution name** is **`door-stabilizer`**. Consider renaming the GitHub repository to **`door-stabilizer`** so `pip` and docs stay aligned.
+If the repo is still named **`door-stabalizer`**, rename it to **`door-stabilizer`** (correct spelling, matches PyPI). GitHub: **Settings → General → Repository name**.
 
 ---
 
