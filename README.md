@@ -61,7 +61,9 @@ pip install door-stabilizer matplotlib
 python examples/plot_learning_curve.py
 ```
 
-Writes `examples/door_vs_random_cumulative.png` — **Door vs random actions**, not a temperature loop.
+Writes `door_vs_random_cumulative.png` in the current working directory (run from `examples/`). **Door vs random actions** on the same toy — not a temperature loop.
+
+![Toy demo: cumulative reward (higher is better)](examples/door_vs_random_cumulative.png)
 
 ---
 
